@@ -20,8 +20,8 @@ class MainActivityViewModel(private val db: RecentDao): ViewModel() {
         db.deleteAll()
     }
 
-    fun getUriOfLocationForMaps(): Uri = Uri.parse("geo:0,0?z=7&q=${curCard.value!!.country!!.latitude}," +
-            "${curCard.value!!.country!!.longitude}(${curCard.value!!.country!!.name})")
+    fun getUriOfLocationForMaps(): Uri = Uri.parse("geo:${curCard.value!!.country!!.latitude}," +
+            "${curCard.value!!.country!!.longitude}?q=${curCard.value!!.country!!.name}")
 
     fun getCardInfoFromApi(number: String) = viewModelScope.launch(Dispatchers.IO) {
         loading.postValue(true)
